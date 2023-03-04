@@ -43,7 +43,7 @@ for page in range(pages):
     try:
         html = session.get(f'https://wallhaven.cc/{choose}?page={page + 1}')
     except requests.exceptions.RequestException as e:
-        print('发生了一些连接错误！')
+        print('发生了一些连接错误！要想想增加反爬机制了！')
         print(e)
     else:
         main_html = BeautifulSoup(html.text, 'lxml')
@@ -53,7 +53,7 @@ for page in range(pages):
             try:
                 image_html = requests.get(href)
             except requests.exceptions.RequestException as e:
-                print('发生了一些连接错误！')
+                print('发生了一些连接错误！要想想增加反爬机制了！')
                 print(e)
             else:
                 bs = BeautifulSoup(image_html.text, 'lxml')
