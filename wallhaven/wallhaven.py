@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from subprocess import call
@@ -18,6 +19,10 @@ session = requests.Session()
 session.headers.update({
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 '
                   'Safari/537.36 Edg/110.0.1587.63'})
+with open('cookie.json') as f:
+    cookie = json.load(f)
+for name in cookie.keys():
+    session.cookies.set(name, cookie[name])
 
 # 主要分类，抓取网站分类功能待实现
 categories = ['latest', 'hot', 'toplist', 'random']
